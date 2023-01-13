@@ -3,6 +3,8 @@ const fs = require('fs')
 // http package/module - building http serve
 const http = require('http')
 
+// **************** FILES *******************
+
 // // Reading a File
 // // define char encoding - utf-8
 // const textInput = fs.readFileSync('./txt/input.txt', 'utf-8');
@@ -25,3 +27,12 @@ const http = require('http')
 //    // step depending upon the steps of previous
 // });
 // console.log('Will read file')
+
+// ***************** SERVER ****************
+const server = http.createServer((req, res) => {
+   res.end('Hello from the server')
+})
+
+server.listen(8000, '127.0.0.1', () => {
+   console.log('Listen request on port 8000')
+})
