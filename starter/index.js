@@ -40,9 +40,21 @@ const server = http.createServer((req, res) => {
       res.end('This is OVERVIEW')
    } else if (path_name === '/product') {
       res.end('This is the PRODUCT')
+   } else if (path_name === '/api') {
+      // read file in here
+      // we now have access to this data
+      fs.readFile(`${__dirname}/dev-data/data.json`, 'utf-8', (err, data) => {
+         const productData = JSON.parse(data)
+         res.writeHead(200, {
+            'Content-type': 'application/json'
+         })
+         res.end(data)
+         // console.log(productData)
+      })
    } else {
       res.writeHead(404, {
-         'Content-type': 'text/html'
+         'Content-type': 'text/html',
+         'my-own-header': 'Hello Word'
       })
       res.end('<h1>Page not found</h1>')
    }
