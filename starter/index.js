@@ -2,6 +2,9 @@
 const fs = require('fs')
 // http package/module - building http serve
 const http = require('http')
+const path = require('path')
+// url module
+const url = require('url')
 
 // **************** FILES *******************
 
@@ -30,8 +33,21 @@ const http = require('http')
 
 // ***************** SERVER ****************
 const server = http.createServer((req, res) => {
-   console.log(req)
-   res.end('Hello from the server')
+   console.log(req.url)
+   const path_name = req.url
+
+   if (path_name === '/' || path_name === '/overview') {
+      res.end('This is OVERVIEW')
+   } else if (path_name === '/product') {
+      res.end('This is the PRODUCT')
+   } else {
+      res.writeHead(404, {
+         'Content-type': 'text/html'
+      })
+      res.end('<h1>Page not found</h1>')
+   }
+   // console.log(req)
+   // res.end('Hello from the server')
 })
 
 server.listen(8000, '127.0.0.1', () => {
