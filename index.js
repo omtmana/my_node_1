@@ -1,2 +1,3 @@
-const hello = "Hello World"
-console.log(hello)
+const fs = require('fs')
+
+fs.readFileSync()
