@@ -32,9 +32,9 @@ const url = require('url')
 // console.log('Will read file')
 
 // ***************** SERVER ****************
-fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8', (err, data) => {
-   const productData = JSON.parse(data)
-})
+const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8')
+const dataObj = JSON.parse(data)
+
 
 const server = http.createServer((req, res) => {
    console.log(req.url)
@@ -47,21 +47,18 @@ const server = http.createServer((req, res) => {
    } else if (path_name === '/api') {
       // read file in here
       // we now have access to this data
-      fs.readFile(`${__dirname}/dev-data/data.json`, 'utf-8', (err, data) => {
-         const productData = JSON.parse(data)
-         res.writeHead(200, {
-            'Content-type': 'application/json'
-         })
-         res.end(data)
-         // console.log(productData)
+      res.writeHead(200, {
+         'Content-type': 'application/json'
       })
+      res.end(data)
+      // console.log(productData)
    } else {
-      res.writeHead(404, {
-         'Content-type': 'text/html',
-         'my-own-header': 'Hello Word'
-      })
-      res.end('<h1>Page not found</h1>')
-   }
+   res.writeHead(404, {
+      'Content-type': 'text/html',
+      'my-own-header': 'Hello Word'
+   })
+   res.end('<h1>Page not found</h1>')
+}
    // console.log(req)
    // res.end('Hello from the server')
 })
