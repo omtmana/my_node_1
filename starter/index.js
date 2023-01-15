@@ -32,7 +32,7 @@ const url = require('url')
 // console.log('Will read file')
 
 // ***************** SERVER ****************
-fs.readFile(`${__dirname}/dev-data/data.json`, 'utf-8', (err, data) => {
+fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8', (err, data) => {
    const productData = JSON.parse(data)
 })
 
