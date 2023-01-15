@@ -32,6 +32,10 @@ const url = require('url')
 // console.log('Will read file')
 
 // ***************** SERVER ****************
+fs.readFile(`${__dirname}/dev-data/data.json`, 'utf-8', (err, data) => {
+   const productData = JSON.parse(data)
+})
+
 const server = http.createServer((req, res) => {
    console.log(req.url)
    const path_name = req.url
