@@ -32,6 +32,7 @@ const url = require('url')
 // console.log('Will read file')
 
 // ***************** SERVER ****************
+// This is how you add the file synchonously
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8')
 const dataObj = JSON.parse(data)
 
