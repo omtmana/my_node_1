@@ -33,18 +33,29 @@ const url = require('url')
 
 // ***************** SERVER ****************
 // This is how you add the file synchonously
+const tempOverview = fs.readFileSync(`${__dirname}/templates/template-overview.html`, 'utf-8')
+const tempCard = fs.readFileSync(`${__dirname}/templates/template-card.html`, 'utf-8')
+const tempProduct = fs.readFileSync(`${__dirname}/templates/template-product.html`, 'utf-8')
+
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8')
 const dataObj = JSON.parse(data)
 
-
+// Reading Data from API
 const server = http.createServer((req, res) => {
    console.log(req.url)
    const path_name = req.url
 
+   // OVERVIEW PAGE 
    if (path_name === '/' || path_name === '/overview') {
-      res.end('This is OVERVIEW')
+      // load/read template overview
+      res.writeHead(200, {'Content-type': 'text/html'})
+      res.end(tempOverview)
+
+   // PRODUCT PAGE
    } else if (path_name === '/product') {
       res.end('This is the PRODUCT')
+
+   // API PAGE
    } else if (path_name === '/api') {
       // read file in here
       // we now have access to this data
@@ -53,6 +64,8 @@ const server = http.createServer((req, res) => {
       })
       res.end(data)
       // console.log(productData)
+
+   // NOT FOUND
    } else {
    res.writeHead(404, {
       'Content-type': 'text/html',
