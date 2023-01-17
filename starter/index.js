@@ -34,7 +34,7 @@ const url = require('url')
 // ***************** SERVER ****************
 // This is how you add the file synchonously
 const replaceTemplate = (temp, product) => {
-   let output = temp.replace(/{%PRODUCTNAME}/g, product.productName)
+   let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName)
    output = output.replace(/{%IMAGE%}/g, product.image)
    output = output.replace(/{%PRICE%}/g, product.price)
    output = output.replace(/{%FROM%}/g, product.from)
@@ -65,9 +65,9 @@ const server = http.createServer((req, res) => {
       // load/read template overview
       res.writeHead(200, {'Content-type': 'text/html'})
 
-      const cardsHtml = dataObj.map(el => replaceTemplate(tempCard, el))
-
-      res.end(tempOverview)
+      const cardsHtml = dataObj.map(el => replaceTemplate(tempCard, el)).join('')
+      const output = tempOverview.replace('{%PRODUCT_CARDS%}', cardsHtml)
+      res.end(output)
 
    // PRODUCT PAGE
    } else if (path_name === '/product') {
