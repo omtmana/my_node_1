@@ -58,6 +58,7 @@ const dataObj = JSON.parse(data) //array of object //loop through this array and
 // Reading Data from API
 const server = http.createServer((req, res) => {
    console.log(req.url)
+   console.log(url.parse())
    const path_name = req.url
 
    // OVERVIEW PAGE 
