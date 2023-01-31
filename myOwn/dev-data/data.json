@@ -1,0 +1,18 @@
+[
+   {
+      "id": 0,
+      "firstName": "Olivia",
+      "lastName": "Manalastas",
+      "age": 25,
+      "city": "New York",
+      "state": "New York"
+   },
+   {
+      "id": 1,
+      "firstName": "Diane",
+      "lastName": "Holt",
+      "age": 29,
+      "city": "Las Vegas",
+      "state": "Nevada"
+   }
+]
